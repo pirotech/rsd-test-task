@@ -1,0 +1,21 @@
+html, body, button,
+div, ul, li, ol, span, p,
+h1, h2, h3, h4, h5, h6, a {
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+    outline: none;
+}
+
+html *, html :after, html :before {
+    box-sizing: border-box;
+}
+
+.app {
+    display: flex;
+    flex-direction: row;
+    min-height: 100vh;
+    align-items: stretch;
+
+    font-family: 'Roboto', sans-serif;
+}

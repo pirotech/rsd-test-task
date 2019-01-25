@@ -1,0 +1,20 @@
+@mixin row {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+@mixin col {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+@mixin island {
+	box-shadow: 0 0 15px 0 $color-island-shadow;
+}
+
+@mixin lg($count) {
+	width: $count * $grid-c + ($count - 1) * $grid-s;
+}

@@ -1,0 +1,45 @@
+h1 {
+	font-family: 'Roboto';
+	font-weight: 300;
+	color: $color-black;
+	font-size: 30px;
+	line-height: 38px;
+}
+h2 {
+	font-family: 'Roboto';
+	font-weight: 300;
+	color: $color-black;
+	font-size: 24px;
+	line-height: 30px;
+}
+h3 {
+}
+h4 {
+}
+h5 {
+	font-family: 'Roboto';
+	font-weight: 700;
+	color: $color-gray-4;
+	font-size: 12px;
+	line-height: 16px;
+	letter-spacing: 0.33px;
+	text-transform: uppercase;
+}
+
+p {
+	font-family: 'Roboto';
+	font-weight: 500;
+	color: $color-black;
+	font-size: 14px;
+	line-height: 18px;
+}
+a {
+	font-family: 'Roboto';
+	font-weight: 500;
+	color: $color-blue-1;
+	font-size: 14px;
+	line-height: 18px;
+	&:hover {
+		color: $color-blue-2;
+	}
+}

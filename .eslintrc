@@ -1,0 +1,52 @@
+{
+  "parser": "babel-eslint",
+  "env": {
+    "browser": true,
+    "node": true,
+    "es6": true
+  },
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true,
+      "modules": true,
+      "experimentalObjectRestSpread": true
+    }
+  },
+  "plugins": [
+    "react"
+  ],
+  "extends": ["eslint:recommended", "plugin:react/recommended"],
+  "rules": {
+    "comma-dangle": 0,
+    "react/jsx-uses-vars": 1,
+    "react/display-name": 1,
+    "react/jsx-closing-tag-location": "error",
+    "react/jsx-tag-spacing": "error",
+    "react/jsx-key": "warn",
+    "react/jsx-no-bind": ["error",{
+      "allowBind": false,
+      "allowFunctions": false,
+      "allowArrowFunctions": true
+    }],
+    "react/self-closing-comp": ["error", {
+      "component": true,
+      "html": true
+    }],
+    "no-unused-vars": "error",
+    "no-console": "warn",
+    "no-unexpected-multiline": "warn",
+    "no-mixed-spaces-and-tabs": "error",
+    "semi": "error",
+    "indent": ["warn", "tab"],
+    # "camelcase": "warn",
+    "prefer-promise-reject-errors": "error"
+  },
+  "settings": {
+    "react": {
+      "pragma": "React",
+      "version": "16.4.1"
+    }
+  }
+}
