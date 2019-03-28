@@ -11,10 +11,6 @@
   align-items: flex-start;
 }
 
-@mixin island {
-	box-shadow: 0 0 15px 0 $color-island-shadow;
-}
-
 @mixin lg($count) {
 	width: $count * $grid-c + ($count - 1) * $grid-s;
 }
