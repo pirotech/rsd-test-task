@@ -5,7 +5,7 @@ import { ConnectedRouter } from 'connected-react-router';
 import { Route, Switch, Redirect } from 'react-router-dom';
 // components
 import TestPage from './components/testPage/TestPage';
-
+import MainPage from './components/mainPage/MainPage';
 // shared styles
 import './shared/css/app.scss';
 
@@ -17,6 +17,7 @@ class App extends Component {
 			<ConnectedRouter history={ this.props.history }>
 				<div className="app">
 					<Switch>
+						<Route path="/" exact component={ MainPage } />
 						<Route path="/test" component={ TestPage } />
 						<Redirect to="/test" />
 					</Switch>
