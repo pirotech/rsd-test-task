@@ -35,7 +35,7 @@
       "html": true
     }],
     "no-unused-vars": "error",
-    "no-console": "warn",
+    "no-console": "off",
     "no-unexpected-multiline": "warn",
     "no-mixed-spaces-and-tabs": "error",
     "semi": "error",

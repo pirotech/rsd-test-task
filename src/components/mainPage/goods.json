@@ -1,0 +1,58 @@
+[
+  {
+    "id": 0,
+    "name": "Велосипед",
+    "brand": "Merida",
+    "price": 30000,
+    "rating": 4
+  },
+  {
+    "id": 1,
+    "name": "Катамаран",
+    "brand": "Валдай",
+    "price": 45000,
+    "rating": 4
+  },
+  {
+    "id": 2,
+    "name": "Рюкзак",
+    "brand": "Баск",
+    "price": 8000,
+    "rating": 5
+  },
+  {
+    "id": 3,
+    "name": "Лыжи беговые",
+    "brand": "Noname",
+    "price": 3500,
+    "rating": 2
+  },
+  {
+    "id": 4,
+    "name": "Лыжи горные",
+    "brand": "Fisher",
+    "price": 55000,
+    "rating": 5
+  },
+  {
+    "id": 5,
+    "name": "Пуховик",
+    "brand": "Баск",
+    "price": 32000,
+    "rating": 5
+  },
+  {
+    "id": 6,
+    "name": "Скальные туфли",
+    "brand": "Climb-x",
+    "price": 2500,
+    "rating": 3
+  },
+  {
+    "id": 7,
+    "name": "Трекинговые ботинки",
+    "brand": "Mammut",
+    "price": 12000,
+    "rating": 5
+  }
+]
