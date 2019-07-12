@@ -3,6 +3,7 @@ import UiCard from '../../shared/components/ui-card/UiCard';
 import UiTextField from '../../shared/components/ui-text-field/UiTextField';
 import UiSelect from '../../shared/components/ui-select/UiSelect';
 import UiRange from '../../shared/components/ui-range/UiRange';
+import UiPagination from '../../shared/components/ui-pagination/UiPagination';
 import goods from './goods.json';
 import './MainPage.scss';
 
@@ -34,16 +35,20 @@ class MainPage extends Component {
 				min: 0,
 				max: 5,
 			},
+      pageCount: 1,
+			page: 0,
 		};
 	}
 
 	onFieldChange = (name, value) => {
 		this.setState({
 			[name]: value,
+			page: 0,
 		}, this.filterGoods);
   };
 
 	filterGoods = () => {
+		// filter by top side filters
     const filteredGoods = this.state.goods.filter((item) => {
       const name = item.name.toLowerCase();
       const searchString = this.state.searchString.toLowerCase();
@@ -62,10 +67,27 @@ class MainPage extends Component {
       const { min, max } = this.state.rating;
       return item.rating >= min && item.rating <= max;
     }));
-    this.setState({
-      filteredGoods,
+    // calc count of pages
+    const PER_PAGE = 6;
+    const pageCount = Math.ceil(filteredGoods.length / PER_PAGE);
+    const { page } = this.state;
+    // filter one page
+		const pagedGoods = filteredGoods.filter((item, index) => {
+			return index >= PER_PAGE * page && index < PER_PAGE * (page + 1);
+		});
+
+		this.setState({
+      filteredGoods: pagedGoods,
+			pageCount,
+			page,
     });
   };
+
+	onPageChange = (value) => {
+		this.setState({
+			page: value.selected,
+		}, this.filterGoods);
+	};
 
 	render() {
 		return (
@@ -120,6 +142,13 @@ class MainPage extends Component {
 						</li>
 					))}
 				</ul>
+        <div className="pagination">
+					<UiPagination
+						forcePage={this.state.page}
+						pageCount={this.state.pageCount}
+						onPageChange={this.onPageChange}
+					/>
+        </div>
 			</div>
 		);
 	}
@@ -127,9 +156,7 @@ class MainPage extends Component {
 	componentDidMount() {
 		this.setState({
 			goods,
-      filteredGoods: goods,
-		});
-		// this.filterGoods();
+		}, this.filterGoods);
 	}
 }
 

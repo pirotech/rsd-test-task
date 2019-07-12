@@ -1,0 +1,50 @@
+.ui-pagination {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  &__break {
+    &-link {}
+  }
+  &__page, &__previous, &__next {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    background-color: white;
+    border: 1px solid hsl(0, 0%, 80%);
+    transition: all 0.1s;
+    cursor: pointer;
+    &-link {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: 100%;
+    }
+  }
+  &__page {
+    border-right: none;
+    &_active {
+      background-color: #3F51B5;
+      border-color: #3F51B5;
+      color: white;
+    }
+    &-link {
+      &_active {}
+    }
+  }
+  &__previous {
+    border-right: none;
+    border-radius: 4px 0 0 4px;
+    &-link {}
+  }
+  &__next {
+    border-radius: 0 4px 4px 0;
+    &-link {}
+  }
+  &_disabled {
+    background-color: lighten(hsl(0, 0%, 80%), 10%);
+    color: darken(hsl(0, 0%, 80%), 20%);
+  }
+}
