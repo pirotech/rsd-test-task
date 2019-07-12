@@ -1,0 +1,11 @@
+.main-page {
+  padding: 20px;
+  &__goods {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  &__good {
+    margin: 20px;
+  }
+}

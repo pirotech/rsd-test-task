@@ -39,7 +39,6 @@
     "no-unexpected-multiline": "warn",
     "no-mixed-spaces-and-tabs": "error",
     "semi": "error",
-    "indent": ["warn", "tab"],
     # "camelcase": "warn",
     "prefer-promise-reject-errors": "error"
   },
