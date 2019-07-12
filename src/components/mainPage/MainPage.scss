@@ -1,11 +1,48 @@
 .main-page {
+  width: 100%;
   padding: 20px;
-  &__goods {
+  background-color: lighten(lightgray, 15%);
+  .filters {
+    &-line {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-top: 20px;
+    }
+    &__search-line, &__brand, &__price, &__rating {
+      display: flex;
+      flex-direction: column;
+    }
+    &__search-line {
+      margin-top: 20px;
+    }
+    &__brand {
+      width: 30%;
+      label {
+        margin-bottom: 5px;
+      }
+    }
+    &__price {
+      width: 30%;
+      label {
+        padding-bottom: 20px;
+      }
+    }
+    &__rating {
+      width: 30%;
+      label {
+        padding-bottom: 20px;
+      }
+    }
+  }
+  .goods {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-  }
-  &__good {
-    margin: 20px;
+    margin-top: 40px;
+    .item {
+      margin: 20px;
+    }
   }
 }
