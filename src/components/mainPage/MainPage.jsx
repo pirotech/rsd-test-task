@@ -41,6 +41,8 @@ class MainPage extends Component {
 	}
 
 	onFieldChange = (name, value) => {
+		localStorage.setItem(name, typeof value === 'object' ? JSON.stringify(value) : value);
+		localStorage.setItem('page', 0 + '');
 		this.setState({
 			[name]: value,
 			page: 0,
@@ -76,6 +78,7 @@ class MainPage extends Component {
 			return index >= PER_PAGE * page && index < PER_PAGE * (page + 1);
 		});
 
+		localStorage.setItem('page', page);
 		this.setState({
       filteredGoods: pagedGoods,
 			pageCount,
@@ -84,8 +87,10 @@ class MainPage extends Component {
   };
 
 	onPageChange = (value) => {
+		const page = value.selected;
+		localStorage.setItem('page', page + '');
 		this.setState({
-			page: value.selected,
+			page,
 		}, this.filterGoods);
 	};
 
@@ -157,8 +162,22 @@ class MainPage extends Component {
 	}
 
 	componentDidMount() {
+		const searchString = localStorage.getItem('searchString');
+		let brand = localStorage.getItem('brand');
+		brand = brand ? JSON.parse(brand) : null;
+		let price = localStorage.getItem('price');
+		price = price ? JSON.parse(price) : null;
+		let rating = localStorage.getItem('rating');
+		rating = rating ? JSON.parse(rating) : null;
+		let page = localStorage.getItem('page');
+		page = page ? parseInt(page) : null;
 		this.setState({
 			goods,
+			searchString: searchString || '',
+			brand: brand || { value: 'Все', label: 'Все' },
+			price: price || { min: 0, max: 55000 },
+			rating: rating || {	min: 0,	max: 5 },
+			page: page || 0,
 		}, this.filterGoods);
 	}
 }
