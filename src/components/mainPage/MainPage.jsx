@@ -4,7 +4,7 @@ import UiTextField from '../../shared/components/ui-text-field/UiTextField';
 import UiSelect from '../../shared/components/ui-select/UiSelect';
 import UiRange from '../../shared/components/ui-range/UiRange';
 import UiPagination from '../../shared/components/ui-pagination/UiPagination';
-import goods from './goods.json';
+import goods from '../../goods.json';
 import './MainPage.scss';
 
 
@@ -137,8 +137,11 @@ class MainPage extends Component {
         </div>
 				<ul className="goods">
 					{this.state.filteredGoods.map(item => (
-						<li key={item.id}>
-							<UiCard className="item" {...item} />
+						<li
+							key={item.id}
+							onClick={() => this.props.history.push(`/details/${item.id}`)}
+						>
+							<UiCard	className="item" {...item} />
 						</li>
 					))}
 				</ul>

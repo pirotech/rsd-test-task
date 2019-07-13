@@ -6,6 +6,7 @@ import { Route, Switch, Redirect } from 'react-router-dom';
 // components
 import TestPage from './components/testPage/TestPage';
 import MainPage from './components/mainPage/MainPage';
+import DetailsPage from './components/detailsPage/DetailsPage';
 // shared styles
 import './shared/css/app.scss';
 
@@ -18,6 +19,7 @@ class App extends Component {
 				<div className="app">
 					<Switch>
 						<Route path="/" exact component={ MainPage } />
+						<Route path="/details/:id" exact component={ DetailsPage } />
 						<Route path="/test" component={ TestPage } />
 						<Redirect to="/test" />
 					</Switch>
