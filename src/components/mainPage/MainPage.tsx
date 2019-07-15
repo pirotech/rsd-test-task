@@ -3,13 +3,11 @@ import { RouteComponentProps } from 'react-router';
 import UiCard from '../../shared/components/ui-card/UiCard';
 import UiTextField from '../../shared/components/ui-text-field/UiTextField';
 import UiSelect from '../../shared/components/ui-select/UiSelect';
+import UiRange from '../../shared/components/ui-range/UiRange';
 import UiPagination from '../../shared/components/ui-pagination/UiPagination';
 import { ISelectItem } from 'src/models/ui';
 import { IGoods } from 'src/models/goods';
 import api from '../../shared/api/api';
-import {Range, Handle, Marks} from 'rc-slider';
-import Tooltip from 'rc-tooltip';
-import 'rc-slider/assets/index.css';
 import './MainPage.scss';
 
 interface IProps extends RouteComponentProps {
@@ -138,47 +136,12 @@ class MainPage extends React.Component<IProps, IState> {
 	};
 
 	render() {
-		const handle = (props) => {
-			const { value, dragging, index, ...restProps } = props;
-			return (
-				<Tooltip
-					prefixCls="rc-slider-tooltip"
-					overlay={value}
-					visible={dragging}
-					placement="top"
-					key={index}
-				>
-					<Handle value={value} {...restProps} />
-				</Tooltip>
-			);
-		};
-		const marksPrice: Marks = {};
+		const marksPrice = {};
 		marksPrice[0] = '0';
 		marksPrice[55000] = '55000';
-		const marksRating: Marks = {};
+		const marksRating = {};
 		marksRating[0] = '0';
 		marksRating[5] = '5';
-		const handleStyle = [
-			{
-				borderColor: '#2684FF',
-				backgroundColor: 'white'
-			},
-			{
-				borderColor: '#2684FF',
-				backgroundColor: 'white'
-			}
-		];
-		const dotStyle = {
-			backgroundColor: '',
-			borderColor: 'hsl(0, 0%, 80%)',
-		};
-		const railStyle = {
-			backgroundColor: 'hsl(0, 0%, 80%)',
-			height: '4px',
-		};
-		const trackStyle = [{
-			backgroundColor: '#2684FF',
-		}];
 
 		return (
 			<div className="main-page">
@@ -202,38 +165,26 @@ class MainPage extends React.Component<IProps, IState> {
 						</div>
 						<div className="filters__price">
 							<label>Цена</label>
-              <Range
-								count={1}
+              <UiRange
+                defaultValue={this.state.price}
                 min={0}
                 max={55000}
-                defaultValue={this.state.price}
                 step={500}
+								count={1}
                 marks={marksPrice}
-								allowCross={false}
 								onAfterChange={this.onPriceChange}
-								handle={handle}
-								handleStyle={handleStyle}
-								dotStyle={dotStyle}
-								railStyle={railStyle}
-								trackStyle={trackStyle}
               />
 						</div>
 						<div className="filters__rating">
 							<label>Рейтинг</label>
-							<Range
-								count={1}
+							<UiRange
+								defaultValue={this.state.rating}
 								min={0}
 								max={5}
-								defaultValue={this.state.rating}
 								step={1}
+								count={1}
 								marks={marksRating}
-								allowCross={false}
 								onAfterChange={this.onRatingChange}
-								handle={handle}
-								handleStyle={handleStyle}
-								dotStyle={dotStyle}
-								railStyle={railStyle}
-								trackStyle={trackStyle}
 							/>
 						</div>
 					</div>
