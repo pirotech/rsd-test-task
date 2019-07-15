@@ -2,32 +2,8 @@ import * as React from 'react';
 import { RouteComponentProps } from 'react-router';
 import Button from '../../shared/components/ui-button/UiButton';
 import { IGoods } from '../../models/goods';
-// import goods from '../../../public/goods.json';
+import api from '../../shared/api/api';
 import './DetailsPage.scss';
-
-const goods: IGoods[] = [
-  {
-    id: 0,
-    name: "Велосипед",
-    brand: "Merida",
-    price: 30000,
-    rating: 4
-  },
-  {
-    id: 1,
-    name: "Катамаран",
-    brand: "Валдай",
-    price: 45000,
-    rating: 4
-  },
-  {
-    id: 2,
-    name: "Рюкзак",
-    brand: "Баск",
-    price: 8000,
-    rating: 5
-  }
-];
 
 interface Params {
   id: string;
@@ -68,14 +44,19 @@ class DetailsPage extends React.Component<IProps, IState> {
   }
 
   componentDidMount() {
-    const found: IGoods[] = goods.filter(item => (
-      item.id === parseInt(this.props.match.params.id)
-    ));
-    const single: IGoods | {} = found.length > 0 ? found[0] : {};
+    api.goods.all().then((response) => {
+      const goods = response.data;
+      const found: IGoods[] = goods.filter(item => (
+        item.id === parseInt(this.props.match.params.id)
+      ));
+      const single: IGoods | {} = found.length > 0 ? found[0] : {};
 
-    this.setState({
-      id: parseInt(this.props.match.params.id),
-      ...single,
+      this.setState({
+        id: parseInt(this.props.match.params.id),
+        ...single,
+      });
+    }).catch((error) => {
+      console.error(error);
     });
   }
 }
