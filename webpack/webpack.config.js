@@ -21,19 +21,18 @@ module.exports = {
 			loaders.JSLoader,
 			loaders.CSSLoader,
 			loaders.FileLoader,
-			loaders.ESLintLoader,
+			// loaders.ESLintLoader,
 			loaders.FontLoader,
 		]
 	},
 	resolve: {
-		extensions: ['.js', '.jsx']
+		extensions: ['.ts', '.tsx', '.js']
 	},
 	output: {
 		publicPath: '/',
 		path: path.resolve(__dirname, "..", "dist"),
 		filename: "js/[name].bundle.js"
 	},
-	// Подключаем плагины в конфигурацию
 	plugins: [
 		plugins.CleanWebpackPlugin,
 		plugins.MiniCssExtractPlugin,

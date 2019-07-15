@@ -3,10 +3,10 @@ const _MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const path = require ('path');
 
 const JSLoader = {
-	test: /\.(js|jsx)$/,
+	test: /\.(js|ts|tsx)$/,
 	exclude: /node_modules/,
 	use: {
-		loader: 'babel-loader'
+		loader: 'awesome-typescript-loader'
 	}
 };
 const CSSLoader = {

@@ -1,10 +1,15 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
 import Select from 'react-select';
 import './UiSelect.scss';
 
+interface IProps {
+  className?: string;
+  value: Object;
+  options: Object[];
+  onChange: Function;
+}
 
-const UiSelect = ({ className, value, options, onChange }) => {
+const UiSelect: React.FC<IProps> = ({ className, value, options, onChange }: IProps) => {
   const classNames = {
     select: (className ? className + ' ' : '') + 'ui-select',
   };
@@ -19,13 +24,6 @@ const UiSelect = ({ className, value, options, onChange }) => {
       onChange={onChange}
     />
   );
-};
-
-UiSelect.propTypes = {
-  className: PropTypes.string,
-  value: PropTypes.object,
-  options: PropTypes.arrayOf(PropTypes.object),
-  onChange: PropTypes.func,
 };
 
 export default UiSelect;

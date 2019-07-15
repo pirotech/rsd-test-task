@@ -1,10 +1,14 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
 import ReactPaginate from 'react-paginate';
 import './UiPagination.scss';
 
+interface IProps {
+  forcePage: number;
+  pageCount: number;
+  onPageChange: Function;
+}
 
-const UiPagination = ({ forcePage, pageCount, onPageChange }) => {
+const UiPagination: React.FC<IProps> = ({ forcePage, pageCount, onPageChange }: IProps) => {
   return (
     <ReactPaginate
       previousLabel="<"
@@ -29,12 +33,6 @@ const UiPagination = ({ forcePage, pageCount, onPageChange }) => {
       disabledClassName="ui-pagination_disabled"
     />
   );
-};
-
-UiPagination.propTypes = {
-  forcePage: PropTypes.number,
-  pageCount: PropTypes.number,
-  onPageChange: PropTypes.func,
 };
 
 export default UiPagination;

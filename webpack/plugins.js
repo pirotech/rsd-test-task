@@ -10,9 +10,7 @@ const devMode = process.env.NODE_ENV !== 'production';
 
 
 const HtmlWebPackPlugin = new _HtmlWebPackPlugin({
-    // где искать индекс файл
     template: "./public/index.html",
-    // какоф файл создавть в dist
     filename: "./index.html"
 });
 

@@ -1,8 +1,7 @@
-import React, {Component} from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
 import { connect } from 'react-redux';
 import { ConnectedRouter } from 'connected-react-router';
-import { Route, Switch, Redirect } from 'react-router-dom';
+import { Route, Switch, Redirect, RouteComponentProps } from 'react-router-dom';
 // components
 import TestPage from './components/testPage/TestPage';
 import MainPage from './components/mainPage/MainPage';
@@ -10,8 +9,10 @@ import DetailsPage from './components/detailsPage/DetailsPage';
 // shared styles
 import './shared/css/app.scss';
 
+interface IProps extends RouteComponentProps {
+}
 
-class App extends Component {
+class App extends React.Component<IProps> {
 
 	render() {
 		return (
@@ -29,10 +30,6 @@ class App extends Component {
 	}
 
 }
-
-App.propTypes = {
-	history: PropTypes.object.isRequired
-};
 
 export default connect(
 	state => ({

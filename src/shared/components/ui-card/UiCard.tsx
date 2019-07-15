@@ -1,8 +1,15 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
 import './UiCard.scss';
 
-const UiCard = ({ className, name, brand, price, rating }) => {
+interface IProps {
+  className?: string;
+  name: string;
+  brand: string;
+  price: number;
+  rating: number;
+}
+
+const UiCard: React.FC<IProps> = ({ className, name, brand, price, rating }: IProps) => {
   const classNames = {
     card: (className ? className + ' ' : '') + ' ui-card',
     rating: `ui-card__rating ui-card__rating_${rating}`,
@@ -20,14 +27,6 @@ const UiCard = ({ className, name, brand, price, rating }) => {
       </div>
     </div>
   );
-};
-
-UiCard.propTypes = {
-  className: PropTypes.string,
-  name: PropTypes.string,
-  brand: PropTypes.string,
-  price: PropTypes.number,
-  rating: PropTypes.number,
 };
 
 export default UiCard;
