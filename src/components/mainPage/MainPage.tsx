@@ -1,14 +1,16 @@
 import * as React from 'react';
 import { RouteComponentProps } from 'react-router';
-import { Range, getTrackBackground } from 'react-range';
 import UiCard from '../../shared/components/ui-card/UiCard';
 import UiTextField from '../../shared/components/ui-text-field/UiTextField';
 import UiSelect from '../../shared/components/ui-select/UiSelect';
 import UiPagination from '../../shared/components/ui-pagination/UiPagination';
 import { ISelectItem } from 'src/models/ui';
 import { IGoods } from 'src/models/goods';
-import './MainPage.scss';
 import api from '../../shared/api/api';
+import {Range, Handle, Marks} from 'rc-slider';
+import Tooltip from 'rc-tooltip';
+import 'rc-slider/assets/index.css';
+import './MainPage.scss';
 
 interface IProps extends RouteComponentProps {
 }
@@ -136,68 +138,48 @@ class MainPage extends React.Component<IProps, IState> {
 	};
 
 	render() {
-		const track = (min, max, values) => ({ props, children }) => (
-			<div
-				onMouseDown={props.onMouseDown}
-				onTouchStart={props.onTouchStart}
-				style={{
-					...props.style,
-					height: '36px',
-					display: 'flex',
-					width: '100%'
-				}}
-			>
-				<div
-					ref={props.ref}
-					style={{
-						height: '5px',
-						width: '100%',
-						borderRadius: '4px',
-						background: getTrackBackground({
-							values,
-							colors: ['#ccc', '#548BF4', '#ccc'],
-							min,
-							max
-						}),
-						alignSelf: 'center'
-					}}
+		const handle = (props) => {
+			const { value, dragging, index, ...restProps } = props;
+			return (
+				<Tooltip
+					prefixCls="rc-slider-tooltip"
+					overlay={value}
+					visible={dragging}
+					placement="top"
+					key={index}
 				>
-					{children}
-				</div>
-			</div>
-		);
-		const thumb = (values) => ({ index, props }) => (
-			<div
-				{...props}
-				style={{
-					...props.style,
-					height: '15px',
-					width: '15px',
-					borderRadius: '50%',
-					backgroundColor: '#FFF',
-					display: 'flex',
-					justifyContent: 'center',
-					alignItems: 'center',
-					boxShadow: '0px 2px 6px #AAA',
-				}}
-			>
-				<div
-					style={{
-						position: 'absolute',
-						top: '-28px',
-						color: '#fff',
-						fontWeight: 'bold',
-						fontSize: '14px',
-						fontFamily: 'Arial,Helvetica Neue,Helvetica,sans-serif',
-						padding: '4px',
-						borderRadius: '4px',
-						backgroundColor: '#548BF4'
-					}}
-				>
-					{values[index].toFixed(0)}
-				</div>
-			</div>
-		);
+					<Handle value={value} {...restProps} />
+				</Tooltip>
+			);
+		};
+		const marksPrice: Marks = {};
+		marksPrice[0] = '0';
+		marksPrice[55000] = '55000';
+		const marksRating: Marks = {};
+		marksRating[0] = '0';
+		marksRating[5] = '5';
+		const handleStyle = [
+			{
+				borderColor: '#2684FF',
+				backgroundColor: 'white'
+			},
+			{
+				borderColor: '#2684FF',
+				backgroundColor: 'white'
+			}
+		];
+		const dotStyle = {
+			backgroundColor: '',
+			borderColor: 'hsl(0, 0%, 80%)',
+		};
+		const railStyle = {
+			backgroundColor: 'hsl(0, 0%, 80%)',
+			height: '4px',
+		};
+		const trackStyle = [{
+			backgroundColor: '#2684FF',
+		}];
+
 		return (
 			<div className="main-page">
 				<h1>Список товаров</h1>
@@ -220,25 +202,38 @@ class MainPage extends React.Component<IProps, IState> {
 						</div>
 						<div className="filters__price">
 							<label>Цена</label>
-							<Range
-								values={this.state.price}
-								min={0}
-								max={55000}
-								step={500}
-								onChange={this.onPriceChange}
-								renderTrack={track(0, 55000, this.state.price)}
-								renderThumb={thumb(this.state.price)}
-							/>
+              <Range
+								count={1}
+                min={0}
+                max={55000}
+                defaultValue={this.state.price}
+                step={500}
+                marks={marksPrice}
+								allowCross={false}
+								onAfterChange={this.onPriceChange}
+								handle={handle}
+								handleStyle={handleStyle}
+								dotStyle={dotStyle}
+								railStyle={railStyle}
+								trackStyle={trackStyle}
+              />
 						</div>
 						<div className="filters__rating">
 							<label>Рейтинг</label>
 							<Range
-								values={this.state.rating}
+								count={1}
 								min={0}
 								max={5}
-								onChange={this.onRatingChange}
-								renderTrack={track(0, 5, this.state.rating)}
-								renderThumb={thumb(this.state.rating)}
+								defaultValue={this.state.rating}
+								step={1}
+								marks={marksRating}
+								allowCross={false}
+								onAfterChange={this.onRatingChange}
+								handle={handle}
+								handleStyle={handleStyle}
+								dotStyle={dotStyle}
+								railStyle={railStyle}
+								trackStyle={trackStyle}
 							/>
 						</div>
 					</div>

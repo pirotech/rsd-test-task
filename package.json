@@ -37,6 +37,7 @@
     "@babel/plugin-proposal-class-properties": "^7.1.0",
     "@babel/preset-env": "^7.1.0",
     "@babel/preset-react": "^7.0.0",
+    "@types/rc-slider": "^8.6.4",
     "@types/react-router-dom": "^4.3.4",
     "autoprefixer": "^9.0.2",
     "awesome-typescript-loader": "^5.2.1",
