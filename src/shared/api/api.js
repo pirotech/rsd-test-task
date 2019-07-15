@@ -1,5 +1,5 @@
 import axios from 'axios';
-import Cookie from 'js-cookie';
+// import Cookie from 'js-cookie';
 
 import goods from './goods';
 
@@ -11,13 +11,13 @@ const ExampleAPI = () => {
 			// 'Pragma': 'no-cache',
 			// 'Access-Control-Allow-Origin': '*'
 		};
-		const token = Cookie.get('token');
-		if (token) {
-			headers['Authorization'] = `Bearer ${token}`;
-		}
+		// const token = Cookie.get('token');
+		// if (token) {
+		// 	headers['Authorization'] = `Bearer ${token}`;
+		// }
 		extra.headers = extra.headers || {};
 
-		axios.defaults.baseURL = extra && extra.baseURL ? extra.baseURL : 'http://example.com';
+		axios.defaults.baseURL = extra && extra.baseURL ? extra.baseURL : 'http://localhost:8888/';
 		return new Promise((resolve, reject) => {
 			axios({
 				url,
@@ -28,8 +28,7 @@ const ExampleAPI = () => {
 				},
 				timeout: 60000
 			}).then(response => {
-				console.log(response.data);
-				resolve(response.data);
+				resolve(response);
 			}).catch(error => {
 				reject(error);
 			});

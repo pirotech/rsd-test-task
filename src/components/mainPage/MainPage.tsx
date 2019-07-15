@@ -5,34 +5,10 @@ import UiCard from '../../shared/components/ui-card/UiCard';
 import UiTextField from '../../shared/components/ui-text-field/UiTextField';
 import UiSelect from '../../shared/components/ui-select/UiSelect';
 import UiPagination from '../../shared/components/ui-pagination/UiPagination';
-// import goods from '../../../public/goods.json';
 import { ISelectItem } from 'src/models/ui';
 import { IGoods } from 'src/models/goods';
 import './MainPage.scss';
-
-const goods: IGoods[] = [
-	{
-		id: 0,
-		name: "Велосипед",
-		brand: "Merida",
-		price: 30000,
-		rating: 4
-	},
-	{
-		id: 1,
-		name: "Катамаран",
-		brand: "Валдай",
-		price: 45000,
-		rating: 4
-	},
-	{
-		id: 2,
-		name: "Рюкзак",
-		brand: "Баск",
-		price: 8000,
-		rating: 5
-	}
-];
+import api from '../../shared/api/api';
 
 interface IProps extends RouteComponentProps {
 }
@@ -289,26 +265,29 @@ class MainPage extends React.Component<IProps, IState> {
 	}
 
 	componentDidMount() {
-		let value: string;
+		api.goods.all().then((response) => {
+			const goods: IGoods[] = response.data;
+			let value: string;
 
-		const searchString: string = localStorage.getItem('searchString');
-		value = localStorage.getItem('brand');
-		const brand: ISelectItem = value ? JSON.parse(value) : null;
-		value = localStorage.getItem('price');
-		const price = value ? JSON.parse(value) : [0, 55000];
-		value = localStorage.getItem('rating');
-		const rating = value ? JSON.parse(value) : [0, 5];
-		value = localStorage.getItem('page');
-		const page = value ? parseInt(value) : null;
+			const searchString: string = localStorage.getItem('searchString');
+			value = localStorage.getItem('brand');
+			const brand: ISelectItem = value ? JSON.parse(value) : null;
+			value = localStorage.getItem('price');
+			const price = value ? JSON.parse(value) : [0, 55000];
+			value = localStorage.getItem('rating');
+			const rating = value ? JSON.parse(value) : [0, 5];
+			value = localStorage.getItem('page');
+			const page = value ? parseInt(value) : null;
 
-		this.setState({
-			goods,
-			searchString: searchString || '',
-			brand: brand || { value: 'Все', label: 'Все' },
-			price: price || [0, 55000],
-			rating: rating || [0, 5],
-			page: page || 0,
-		}, this.filterGoods);
+			this.setState({
+				goods,
+				searchString: searchString || '',
+				brand: brand || { value: 'Все', label: 'Все' },
+				price: price || [0, 55000],
+				rating: rating || [0, 5],
+				page: page || 0,
+			}, this.filterGoods);
+		});
 	}
 }
 

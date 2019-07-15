@@ -5,10 +5,8 @@ const plugins = require("./plugins.js");
 
 
 module.exports = {
-	entry: ["./src/index.js"],
+	entry: './src/index.js',
 	devServer: {
-		contentBase: './dist',
-		publicPath: '/',
 		port: 8888,
 		historyApiFallback: true,
 		watchContentBase: true,
@@ -29,8 +27,7 @@ module.exports = {
 		extensions: ['.ts', '.tsx', '.js']
 	},
 	output: {
-		publicPath: '/',
-		path: path.resolve(__dirname, "..", "dist"),
+		path: path.join(__dirname, '/dist'),
 		filename: "js/[name].bundle.js"
 	},
 	plugins: [
