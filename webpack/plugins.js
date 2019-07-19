@@ -1,7 +1,7 @@
 const path = require ('path');
 
-const _HtmlWebPackPlugin = require("html-webpack-plugin");
-const _MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const _HtmlWebPackPlugin = require('html-webpack-plugin');
+const _MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const _CleanWebpackPlugin = require('clean-webpack-plugin');
 
 
@@ -10,8 +10,8 @@ const devMode = process.env.NODE_ENV !== 'production';
 
 
 const HtmlWebPackPlugin = new _HtmlWebPackPlugin({
-    template: "./public/index.html",
-    filename: "./index.html"
+    template: './public/index.html',
+    filename: './index.html'
 });
 
 const MiniCssExtractPlugin = new _MiniCssExtractPlugin({
@@ -21,7 +21,7 @@ const MiniCssExtractPlugin = new _MiniCssExtractPlugin({
     chunkFilename: devMode ? '[id].css' : '[id].[hash].css',
 });
 
-const CleanWebpackPlugin = new _CleanWebpackPlugin(["dist"], { root: path.resolve(__dirname , '..'), verbose: true });
+const CleanWebpackPlugin = new _CleanWebpackPlugin(['dist'], { root: path.resolve(__dirname , '..'), verbose: true });
 
 
 module.exports = {

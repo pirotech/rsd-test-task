@@ -1,6 +1,6 @@
 const devMode = process.env.NODE_ENV !== 'production';
-const _MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const path = require ('path');
+const _MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const path = require('path');
 
 const JSLoader = {
 	test: /\.(js|ts|tsx)$/,
@@ -16,7 +16,7 @@ const CSSLoader = {
 			loader: devMode ? 'style-loader' : _MiniCssExtractPlugin.loader,
 		},
 		{
-			loader: "css-loader",
+			loader: 'css-loader',
 			options: {
 				modules: false,
 				importLoaders: 1,
@@ -25,12 +25,12 @@ const CSSLoader = {
 			}
 		},
 		{
-			loader: "sass-loader",
+			loader: 'sass-loader',
 			options: {
 				data: '@import "./src/shared/css/settings/_variables.scss";' +
           '@import "./src/shared/css/settings/_mixins.scss";',
 				includePaths: [
-					path.resolve(__dirname, "./src")
+					path.resolve(__dirname, './src')
 				]
 			}
 		},
