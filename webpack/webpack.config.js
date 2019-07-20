@@ -5,7 +5,7 @@ const plugins = require("./plugins.js");
 
 
 module.exports = {
-	entry: './src/index.js',
+	entry: './src/index.tsx',
 	devServer: {
 		port: 8888,
 		historyApiFallback: true,

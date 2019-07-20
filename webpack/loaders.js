@@ -18,7 +18,6 @@ const CSSLoader = {
 		{
 			loader: 'css-loader',
 			options: {
-				modules: false,
 				importLoaders: 1,
 				sourceMap: true,
 				minimize: true,
