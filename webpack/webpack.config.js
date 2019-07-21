@@ -1,7 +1,7 @@
 const path = require ('path');
 
-const loaders = require("./loaders.js");
-const plugins = require("./plugins.js");
+const loaders = require('./loaders.js');
+const plugins = require('./plugins.js');
 
 
 module.exports = {
@@ -16,10 +16,10 @@ module.exports = {
 	},
 	module: {
 		rules: [
-			loaders.JSLoader,
+			loaders.TSLoader,
+			loaders.TSLintLoader,
 			loaders.CSSLoader,
 			loaders.FileLoader,
-			// loaders.ESLintLoader,
 			loaders.FontLoader,
 		]
 	},
@@ -28,11 +28,11 @@ module.exports = {
 	},
 	output: {
 		path: path.join(__dirname, '../dist'),
-		filename: "js/[name].bundle.js"
+		filename: 'js/[name].bundle.js'
 	},
 	plugins: [
 		plugins.CleanWebpackPlugin,
 		plugins.MiniCssExtractPlugin,
-		plugins.HtmlWebPackPlugin
+		plugins.HtmlWebpackPlugin,
 	]
 };

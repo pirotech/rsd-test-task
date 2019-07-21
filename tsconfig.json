@@ -21,5 +21,9 @@
         "src/components/*"
       ]
     }
-  }
+  },
+  "exclude": [
+    "./webpack",
+    "./src/shared/api"
+  ]
 }

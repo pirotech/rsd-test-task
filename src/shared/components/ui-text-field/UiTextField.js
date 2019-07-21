@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 
-
 const UiTextField = styled.input`
   width: 100%;
   height: 38px;

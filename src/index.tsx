@@ -7,13 +7,12 @@ import registerServiceWorker from '../registerServiceWorker';
 
 import App from './App';
 
-
-ReactDOM.render(
-	<Provider store={ store }>
-		<App history={ history } />
-	</Provider>
-	,
-	document.getElementById('index')
+ReactDOM.render((
+    <Provider store={ store }>
+      <App history={ history } />
+    </Provider>
+  ),
+  document.getElementById('index'),
 );
 
 registerServiceWorker();

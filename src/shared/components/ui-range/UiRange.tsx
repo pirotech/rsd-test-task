@@ -24,12 +24,12 @@ const UiRange: React.FC<IProps> = (props) => {
   const handleStyle = [
     {
       borderColor: '#2684FF',
-      backgroundColor: 'white'
+      backgroundColor: 'white',
     },
     {
       borderColor: '#2684FF',
-      backgroundColor: 'white'
-    }
+      backgroundColor: 'white',
+    },
   ];
   const dotStyle = {
     backgroundColor: '',

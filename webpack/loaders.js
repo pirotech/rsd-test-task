@@ -1,12 +1,24 @@
-const devMode = process.env.NODE_ENV !== 'production';
-const _MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const path = require('path');
+const _MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const devMode = process.env.NODE_ENV !== 'production';
 
-const JSLoader = {
+const TSLoader = {
 	test: /\.(js|ts|tsx)$/,
 	exclude: /node_modules/,
 	use: {
 		loader: 'awesome-typescript-loader'
+	}
+};
+const TSLintLoader = {
+	enforce: 'pre',
+	test: /\.(ts|tsx)$/,
+	exclude: /node_modules/,
+	include: path.resolve(__dirname, '../src'),
+	use: {
+		loader: 'tslint-loader',
+		options: {
+			configFile: path.resolve(__dirname, '../tslint.json'),
+		},
 	}
 };
 const CSSLoader = {
@@ -26,7 +38,8 @@ const CSSLoader = {
 		{
 			loader: 'sass-loader',
 			options: {
-				data: '@import "./src/shared/css/settings/_variables.scss";' +
+				data:
+					'@import "./src/shared/css/settings/_variables.scss";' +
           '@import "./src/shared/css/settings/_mixins.scss";',
 				includePaths: [
 					path.resolve(__dirname, './src')
@@ -44,18 +57,6 @@ const FileLoader = {
 		}
 	},
 };
-const ESLintLoader = {
-	enforce: 'pre',
-	test: /\.(js|jsx)$/,
-	exclude: /node_modules/,
-	include: path.resolve(__dirname, '../src'),
-	use: {
-		loader: 'eslint-loader',
-		options: {
-			configFile: path.resolve(__dirname, '../.eslintrc'),
-		},
-	}
-};
 const FontLoader = {
 	test: /\.(woff(2)?|eot|ttf|otf)(\?.*$|$)/,
 	use: [{
@@ -66,11 +67,10 @@ const FontLoader = {
 	}]
 };
 
-
 module.exports = {
-	JSLoader,
+	TSLoader,
+	TSLintLoader,
 	CSSLoader,
 	FileLoader,
-	ESLintLoader,
 	FontLoader,
 };
