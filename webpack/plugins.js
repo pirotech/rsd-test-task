@@ -7,12 +7,14 @@ const devMode = process.env.NODE_ENV !== 'production';
 
 const CleanWebpackPlugin = new _CleanWebpackPlugin(
   ['dist'],
-  { root: path.resolve(__dirname , '..'), verbose: true }
+  { root: path.resolve(__dirname, '..'), verbose: true }
 );
+
 const HtmlWebPackPlugin = new _HtmlWebPackPlugin({
   template: './public/index.html',
   filename: './index.html'
 });
+
 const MiniCssExtractPlugin = new _MiniCssExtractPlugin({
   filename: devMode ? '[name].css' : '[name].[hash].css',
   chunkFilename: devMode ? '[id].css' : '[id].[hash].css',
